@@ -1,5 +1,7 @@
-# Project-level Streamlit configuration
-
 [browser]
-# Disable Streamlit usage statistics for this app
 gatherUsageStats = false
+
+[server]
+headless = true
+enableCORS = false
+enableXsrfProtection = true
