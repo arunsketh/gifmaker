@@ -13,6 +13,11 @@ st.set_page_config(
 def check_password():
     """Returns `True` if the user had the correct password."""
 
+    # --- SAFETY CHECK: Ensure the password is set in secrets ---
+    if "password" not in st.secrets:
+        st.error("⚠️ Error: 'password' key is missing in secrets. Please create .streamlit/secrets.toml locally or add it to Streamlit Cloud secrets.")
+        return False
+
     def password_entered():
         """Checks whether a password entered by the user is correct."""
         if st.session_state["password"] == st.secrets["password"]:
