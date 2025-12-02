@@ -1,10 +1,21 @@
-# Python
+# Byte-compiled / cache
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
+*.pyd
 
-# Streamlit secrets
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Streamlit secrets (keep this out of Git)
 .streamlit/secrets.toml
 
 # OS / editor cruft
 .DS_Store
+Thumbs.db
 *.swp
+*.swo
+.idea/
+.vscode/
