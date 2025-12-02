@@ -2,7 +2,7 @@ import os
 import tempfile
 
 import streamlit as st
-from moviepy.editor import VideoFileClip
+from moviepy.video.io.VideoFileClip import VideoFileClip
 
 # -----------------------------
 # 1. Basic page configuration
