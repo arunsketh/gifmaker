@@ -109,12 +109,16 @@ if check_password():
                             st.success("Conversion Complete!")
                             st.image(output_path, caption="Generated GIF Preview")
                             
+                            # Derive new filename from uploaded file
+                            original_name = uploaded_file.name
+                            new_filename = os.path.splitext(original_name)[0] + ".gif"
+
                             # Download Button
                             with open(output_path, "rb") as file:
                                 btn = st.download_button(
                                     label="Download GIF",
                                     data=file,
-                                    file_name="converted_animation.gif",
+                                    file_name=new_filename,
                                     mime="image/gif"
                                 )
                                 
