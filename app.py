@@ -68,6 +68,7 @@ if check_password():
             # Load video
             clip = VideoFileClip(tfile.name)
             duration = clip.duration
+            original_width = clip.size[0]
             
             st.video(tfile.name)
             st.info(f"Original Duration: {duration:.2f} seconds | Resolution: {clip.size}")
@@ -80,11 +81,14 @@ if check_password():
             
             with col1:
                 start_time = st.number_input("Start Time (seconds)", min_value=0.0, max_value=duration, value=0.0, step=0.5)
-                end_time = st.number_input("End Time (seconds)", min_value=0.0, max_value=duration, value=min(duration, 5.0), step=0.5)
+                # MODIFIED: Default value set to full duration
+                end_time = st.number_input("End Time (seconds)", min_value=0.0, max_value=duration, value=duration, step=0.5)
             
             with col2:
                 fps = st.slider("Frame Rate (FPS)", min_value=1, max_value=30, value=10, help="Lower FPS = smaller file size.")
-                width = st.slider("Resize Width (px)", min_value=100, max_value=1920, value=min(clip.size[0], 480), help="Smaller width significantly reduces file size.")
+                # MODIFIED: Default value set to original width, max value adjusts if video is larger than 1920
+                max_slider_width = max(1920, original_width)
+                width = st.slider("Resize Width (px)", min_value=100, max_value=max_slider_width, value=original_width, help="Smaller width significantly reduces file size.")
 
             # Logic check for time
             if start_time >= end_time:
